@@ -44,8 +44,8 @@ function SearchBar() {
 
     <div className="search-bar-inner-wrapper">
         <div className='search-bar'>        
-        <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
-        <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
+            <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
+            <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="search-results">
              {searchResultsElements}
