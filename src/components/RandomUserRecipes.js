@@ -28,7 +28,7 @@ function RandomUserRecipesContainer() {
           })
         }).catch((error)=>{
         })
-      },[]);
+      },[user.isDemo]);
     const [userRecipes,setUserRecipes]=useState([]);
 
     useEffect(()=>{

@@ -12,7 +12,14 @@ function Dashboard() {
   
   const {user,setUser} = useContext(UserContext);
   const [currentTab,setCurrentTab] = useState("Random-Recipes");
-
+  const {pathname} = useLocation();
+  const isDemo = /demo/gm.test(pathname);
+  console.log(user)
+  useEffect(()=>{
+    setUser((prev)=>{
+      return {...prev,isDemo}
+    })
+  },[])
   return (
       <div className='page-wrapper'>
         <div id="recipes-content-wrapper">

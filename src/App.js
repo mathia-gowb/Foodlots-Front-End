@@ -32,7 +32,7 @@ function App() {
 
   const userSchema = {
     loggedIn:false,
-    isDemo:false,
+    isDemo:true,
     likedRecipes:[],
     savedRecipes:[]
   }
