@@ -23,10 +23,12 @@ function RandomUserRecipesContainer() {
         .then((res)=>{
           const {likedRecipes,savedRecipes}=res.data;
           //save the recipes to the app context for reference
+          console.log(likedRecipes,savedRecipes)
           setUser((prev)=>{
             return {...prev,likedRecipes,savedRecipes,isDemo}
           })
         }).catch((error)=>{
+          console.log(error)
         })
       },[user.isDemo]);
     const [userRecipes,setUserRecipes]=useState([]);
