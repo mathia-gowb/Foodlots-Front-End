@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 export const SolidHeaderWrapper = styled.header`
-
     position:fixed;
     top:0;
     left:0;
-    width:100%;
+    width:100%;    
+    background-color:${props=>props.theme.colors.primary} ;
+    padding:15px 5px;
+
     .solid-header-nav{
-        overflow: hidden;
         display:flex;
         align-items: center;
         max-width:1200px;

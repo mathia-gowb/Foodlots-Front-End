@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import UserContext from '../../auth/AuthContext';
 import Logo from '../Logo';
 /* jsx components */
-import SearchBar from '../SearchBar';
+import SearchBar from '../Forms/SearchBar';
 /* styling components */
 import { SolidHeaderWrapper } from './SolidHeader.styled';
 const axios = require('axios').default;

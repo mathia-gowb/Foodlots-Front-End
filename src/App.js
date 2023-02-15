@@ -23,10 +23,12 @@ import DashboardParent from './components/DashboardParent';
 import Page404 from './pages/404';
 import ResetPassword from './pages/ResetPassword';
 import PasswordResetTokenised from './pages/PasswordResetTokenised';
+/* import theme file */
+import { theme } from './styles/Theme';
+import { ThemeProvider } from 'styled-components';
 const axios = require('axios').default;
 axios.defaults.baseURL='https://foodlots.herokuapp.com/'
 axios.defaults.withCredentials=true;
-
 
 function App() {
 
@@ -52,30 +54,32 @@ function App() {
   },[])
   return (
     <UserContext.Provider value={{user,setUser}}>
-    <Helmet>
-      <title> FoodLots | Home </title>
-    </Helmet>
-     <Router>
-        <Routes>
-          {/* check login status and display landing page or videos page */}
-          {/* <Route path='/' element={<LandingPage/>}/> */}
-          <Route path='/' element={<RequireAuth><DashboardParent/></RequireAuth>}>
-            <Route path='' element={<Dashboard/>}></Route>
-            <Route path='recipe' element={<SingleRecipe/>}></Route>
-          </Route>
-          <Route path='/signup/verification-message/:email' element={<VerificationNotice/>}/>
-          <Route path='/user/verify/:userId/:uniqueString' element={<VerifyEmail/>}/>
-          <Route path='/user/reset-password/:userId/:uniqueString' element={<PasswordResetTokenised/>}/>
-          <Route path='login' element={user.loggedIn?<Navigate to={'/'}/>:<Login/>}></Route>
-          <Route path='signup' element={user.loggedIn?<Navigate to={'/'}/>:<SignUp/>}></Route>
-          <Route path='reset' element={<ResetPassword/>}></Route>
-          <Route path='demo' element={<DashboardParent/>}>
-            <Route path='' element={<Dashboard/>}></Route>
-            <Route path='recipe' element={<SingleRecipe/>}></Route>
-          </Route>
-          <Route path="*" element={<Page404/>}></Route>
-        </Routes>
-      </Router>
+      <ThemeProvider theme={theme}>
+        <Helmet>
+          <title> FoodLots | Home </title>
+        </Helmet>
+        <Router>
+            <Routes>
+              {/* check login status and display landing page or videos page */}
+              {/* <Route path='/' element={<LandingPage/>}/> */}
+              <Route path='/' element={<RequireAuth><DashboardParent/></RequireAuth>}>
+                <Route path='' element={<Dashboard/>}></Route>
+                <Route path='recipe' element={<SingleRecipe/>}></Route>
+              </Route>
+              <Route path='/signup/verification-message/:email' element={<VerificationNotice/>}/>
+              <Route path='/user/verify/:userId/:uniqueString' element={<VerifyEmail/>}/>
+              <Route path='/user/reset-password/:userId/:uniqueString' element={<PasswordResetTokenised/>}/>
+              <Route path='login' element={user.loggedIn?<Navigate to={'/'}/>:<Login/>}></Route>
+              <Route path='signup' element={user.loggedIn?<Navigate to={'/'}/>:<SignUp/>}></Route>
+              <Route path='reset' element={<ResetPassword/>}></Route>
+              <Route path='demo' element={<DashboardParent/>}>
+                <Route path='' element={<Dashboard/>}></Route>
+                <Route path='recipe' element={<SingleRecipe/>}></Route>
+              </Route>
+              <Route path="*" element={<Page404/>}></Route>
+            </Routes>
+        </Router>
+      </ThemeProvider>
     </UserContext.Provider>
   );
 }

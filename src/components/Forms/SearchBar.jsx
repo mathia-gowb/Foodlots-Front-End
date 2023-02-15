@@ -1,12 +1,14 @@
 import React from 'react'
 import {useContext, useEffect,useState} from 'react';
 import { useLocation,Link } from "react-router-dom";
-import UserContext from "../auth/AuthContext";
+import UserContext from "../../auth/AuthContext";
+import { SearchBarWrapper } from './SearchBar.styled';
 
 function SearchBar() {
     const {user} =useContext(UserContext);
     const [searchArray,setSearchArray] = useState([]);
     const [searchResults,setSearchResults] = useState([]);
+    const [showCategories,setShowCategories] = useState(false)
     const {pathname} = useLocation();
 
 
@@ -40,21 +42,41 @@ function SearchBar() {
     }) 
 
   return (
-    <div className='search-bar-wrapper'>
+    <SearchBarWrapper className='search-bar-wrapper'>
 
     <div className="search-bar-inner-wrapper">
         <div className='search-bar'>
-            <div className="search-categories">
-                sdf
-            </div>       
+            <button className="search-categories" onClick={()=>setShowCategories((prev)=>!prev)}>
+                <span>Categories</span> 
+                <i class={`fa-solid fa-caret-${showCategories?"up":"down"} icon`}></i>
+            </button>       
             <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
             <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
+
+        {
+            showCategories?(
+                <div className='categories-dropdown'>
+                <p className="dropdown-heading">Categories</p>
+                <div className="categories-options">
+                    <button>Beef</button>
+                    <button>Beef</button>
+                    <button>Beef</button>
+                    <button>Beef</button>
+                    <button>Beef</button>
+                    <button>Beef</button>
+                    <button>Beef</button>
+                </div>
+                </div>
+            ):null
+        }
+
+
         <div class="search-results">
              {searchResultsElements}
         </div>
     </div>
-  </div>
+  </SearchBarWrapper>
   )
 }
 
