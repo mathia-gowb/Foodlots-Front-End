@@ -41,7 +41,6 @@ function App() {
     //try to get current user
     axios.get('user')
     .then((res)=>{
-      console.log(res)
       //if user found set the login status to true
       if(res.data.status==='SUCCESSFUL'){
         setUser((prev)=>{
@@ -49,7 +48,6 @@ function App() {
         })
       } 
     }).catch((error)=>{
-      console.log(error)
     })
   },[])
   return (

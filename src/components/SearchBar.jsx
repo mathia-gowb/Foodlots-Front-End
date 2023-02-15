@@ -43,7 +43,10 @@ function SearchBar() {
     <div className='search-bar-wrapper'>
 
     <div className="search-bar-inner-wrapper">
-        <div className='search-bar'>        
+        <div className='search-bar'>
+            <div className="search-categories">
+                sdf
+            </div>       
             <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
             <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>

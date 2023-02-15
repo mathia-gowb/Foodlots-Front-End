@@ -1,11 +1,14 @@
 import { useContext } from 'react';
-import SolidHeaderStyles from '../styles/SolidHeader.module.css';
-import SearchBar from './SearchBar';
 import { useNavigate } from 'react-router-dom';
-import UserContext from '../auth/AuthContext';
-import Logo from './Logo';
+import UserContext from '../../auth/AuthContext';
+import Logo from '../Logo';
+/* jsx components */
+import SearchBar from '../SearchBar';
+/* styling components */
+import { SolidHeaderWrapper } from './SolidHeader.styled';
 const axios = require('axios').default;
 axios.defaults.withCredentials = true;
+
 function SolidHeader(props) {
     const navigate = useNavigate();
     const {user,setUser} = useContext(UserContext);
@@ -22,13 +25,14 @@ function SolidHeader(props) {
         })
     }
     return (
-        <header id="solid-header">
-            <nav className={SolidHeaderStyles.solidHeaderNav}>
+        <SolidHeaderWrapper id="solid-header" >
+            <nav className="solid-header-nav">
                 <Logo/>
-                {!props.isDemo&&<button className={SolidHeaderStyles.logOutButton} onClick={clickHandler}>Logout</button>}
+                
+                {props.showSearch&&<SearchBar/>}
+                {!props.isDemo&&<button className="logout-button" onClick={clickHandler}>Logout</button>}
             </nav>
-            {props.showSearch&&<SearchBar/>}
-        </header>
+        </SolidHeaderWrapper>
     )
 }
 

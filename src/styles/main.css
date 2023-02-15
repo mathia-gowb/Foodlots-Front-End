@@ -58,7 +58,7 @@ img{
 }
 
 .overlay{
-    background:linear-gradient(rgba(41, 25, 25, 0.694),rgb(2, 1, 1));
+    background:linear-gradient(#291919b1,rgb(2, 1, 1));
     background-repeat: no-repeat;
     background-size:cover;
     width:100%;

@@ -2,7 +2,7 @@ import { useEffect,useState,useContext } from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import UserContext from '../auth/AuthContext';
 import InteractionBar from '../components/InteractionBar';
-import SolidHeader from '../components/SolidHeader';
+import SolidHeader from '../components/Navigation/SolidHeader';
 import extractIngredients from '../helpers/extractIngredients';
 import {Helmet} from 'react-helmet'
 

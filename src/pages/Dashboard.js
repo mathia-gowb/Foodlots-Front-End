@@ -4,7 +4,7 @@ import UserContext from '../auth/AuthContext';
 import RandomRecipes from '../components/RandomRecipes';
 import LikedRecipes from '../components/LikedRecipes';
 import SavedRecipes from '../components/SavedRecipes';
-import SolidHeader from '../components/SolidHeader';
+import SolidHeader from '../components/Navigation/SolidHeader';
 const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 
