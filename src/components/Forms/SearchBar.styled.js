@@ -1,27 +1,26 @@
 import styled from 'styled-components';
 
 export const SearchBarWrapper = styled.div`
-    .search-bar-inner-wrapper{
+
+    width:100%;
+    position:relative;
+    margin:auto;
+    .search-bar,.search-results{
         width:100%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .search-bar{
+        padding:5px 0;
+        background-color: ${props=>props.theme.colors.neutralLight};
+        display:flex;
         position:relative;
-        margin:auto;
-        .search-bar,.search-results{
-            min-width:250px;
-            width:100%;
-            margin-left:auto;
-            margin-right:auto;
-        }
-        .search-bar{
-            padding:5px 0;
-            background-color: ${props=>props.theme.colors.neutralLight};
-            display:flex;
-            position:relative;
-            border-radius:3px;
-            -webkit-border-radius:3px;
-            -moz-border-radius:3px;
-            -ms-border-radius:3px;
-            -o-border-radius:3px;
-            .search-categories{
+        border-radius:3px;
+        -webkit-border-radius:3px;
+        -moz-border-radius:3px;
+        -ms-border-radius:3px;
+        -o-border-radius:3px;
+        .search-categories{
                 transition:0.4s all;
                 display:flex;
                 align-items: center;
@@ -36,19 +35,19 @@ export const SearchBarWrapper = styled.div`
                     margin-left:4px;
                     font-size:14px;
                 }
-            }
-            input{
+        }
+        input{
                 background-color: transparent;
                 outline:none;
                 border:none;
                 margin:0;
                 padding:10px 10px
-            }
-            button{
+        }
+        button{
                 background-color: transparent;
                 padding:5px 15px;
                 color:${props=>props.theme.colors.neutral}
-            }
+        }
     }
     .categories-dropdown{
         position:absolute;
@@ -87,6 +86,5 @@ export const SearchBarWrapper = styled.div`
             color:gray
         }
     }
-}
 
 `

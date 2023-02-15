@@ -43,8 +43,6 @@ function SearchBar() {
 
   return (
     <SearchBarWrapper className='search-bar-wrapper'>
-
-    <div className="search-bar-inner-wrapper">
         <div className='search-bar'>
             <button className="search-categories" onClick={()=>setShowCategories((prev)=>!prev)}>
                 <span>Categories</span> 
@@ -75,7 +73,7 @@ function SearchBar() {
         <div class="search-results">
              {searchResultsElements}
         </div>
-    </div>
+
   </SearchBarWrapper>
   )
 }
