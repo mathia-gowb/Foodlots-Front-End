@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom';
-import FormInput from '../components/FormInput';
-import { testForErrors } from '../utilities/testForErrors';
+import { Link, Navigate } from 'react-router-dom';
+import FormInput from '../../components/FormInput';
+import { testForErrors } from '../../utilities/testForErrors';
 import { useNavigate } from 'react-router-dom';
 import {Helmet} from 'react-helmet';
-import FormPasswordInput from '../components/FormPasswordInput';
+import FormPasswordInput from '../../components/FormPasswordInput';
+import { SignupPageWrapper } from './AuthPages.styled';
 const axios = require('axios').default;
 axios.defaults.withCredentials = true;
+
 function SignUp() {
     const navigate = useNavigate();
     const [submit,setSubmit]=useState(false);
@@ -113,13 +115,13 @@ function SignUp() {
     },[formErrors,submit])
   return (
 
-    <main class="full-screen-div auth-main-wrapper" >
+    <SignupPageWrapper className="full-screen-div auth-main-wrapper" >
         <Helmet>
             <title>Foodlots | SignUp</title>
         </Helmet>
-        <div class="overlay"></div>
-        <h1 class="auth-main-header">Create Account</h1>
-        <form onSubmit={handleSubmit} onChange={handleInput}>
+        <div className="form-wrapper">
+            <h1 class="auth-main-header">Signup</h1>
+            <form onSubmit={handleSubmit} onChange={handleInput}>
              <FormInput
                  type={"email"}
                  placeholder={'Enter your email'}
@@ -141,17 +143,21 @@ function SignUp() {
                 /*for signup errorMessage ={ "password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"} */
             />
             
-            <div className="input-wrapper">
+            <div className="input-wrapper password2-wrapper">
                 <input  type="password" placeholder="Confirm Password" name="password2" onChange={handlePasswordCompare} />
                 <p className="validation-message">{formErrors.password2}</p>
             </div>
-            <input type="checkbox" name="remember" id="remember"/>{/* end of input */}
-            <label htmlFor="remember" id="remember-me-label"> Remember Me</label><br/>   
+            <br/>
+            <div className="redirect-links">
+                <p>Already have an Account?</p>
+                <Link to="/login" className='redirect-links_login'>Login</Link>
+            </div>
             <button class="auth-submit-button"> 
                 {isSubmitting?<span> Creating Account <i className="fa-solid  fa-circle-notch fa-spin"></i></span>:"Submit"}
             </button>
-        </form>
-    </main>
+            </form>
+        </div>
+    </SignupPageWrapper>
   )
 }
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import PasswordInput from '../styles/PasswordInput.module.css';
+
 
 function FormPasswordInput(props) {
     const {placeholder,name,errorMessage}=props;
@@ -12,10 +12,10 @@ function FormPasswordInput(props) {
         setInputType('password')
     }
   return (
-    <div className="input-wrapper">
+    <div className="input-wrapper password-input-wrapper">
         <div>
             <input  type={inputType} placeholder={placeholder} name={name}  className={`${errorMessage?'form-error':""}`}/>
-            <span className={PasswordInput.button} onClick={handleClick}>show password</span>
+            <button type="button" className="toggle-password" onClick={handleClick}>show password</button>
         </div>
         <p className="validation-message">{errorMessage}</p>
     </div>

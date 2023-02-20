@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {useContext, useEffect,useState} from 'react';
 import { useLocation,Link } from "react-router-dom";
 import UserContext from "../../auth/AuthContext";
+import OutsideClickDetector from '../OutsideClickDetector';
 import { SearchBarWrapper } from './SearchBar.styled';
 
 function SearchBar() {
     const {user} =useContext(UserContext);
     const [searchArray,setSearchArray] = useState([]);
     const [searchResults,setSearchResults] = useState([]);
-    const [showCategories,setShowCategories] = useState(false)
+    const [showCategories,setShowCategories] = useState(false);
+    const searchBarElement = useRef();
+
     const {pathname} = useLocation();
 
 
@@ -42,7 +45,7 @@ function SearchBar() {
     }) 
 
   return (
-    <SearchBarWrapper className='search-bar-wrapper'>
+    <SearchBarWrapper className='search-bar-wrapper' ref={searchBarElement}>
         <div className='search-bar'>
             <button className="search-categories" onClick={()=>setShowCategories((prev)=>!prev)}>
                 <span>Categories</span> 
@@ -51,29 +54,26 @@ function SearchBar() {
             <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
             <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
-
-        {
-            showCategories?(
-                <div className='categories-dropdown'>
-                <p className="dropdown-heading">Categories</p>
-                <div className="categories-options">
-                    <button>Beef</button>
-                    <button>Beef</button>
-                    <button>Beef</button>
-                    <button>Beef</button>
-                    <button>Beef</button>
-                    <button>Beef</button>
-                    <button>Beef</button>
-                </div>
-                </div>
-            ):null
-        }
-
-
+        <div className={`categories-dropdown ${showCategories?'dropdown-active':''}`}>
+            <p className="dropdown-heading">Categories</p>
+            <div className="categories-options">
+                <button>Beef</button>
+                <button>Beef</button>
+                <button>Beef</button>
+                <button>Beef</button>
+                <button>Beef</button>
+                <button>Beef</button>
+                <button>Beef</button>
+            </div>
+        </div>
         <div class="search-results">
              {searchResultsElements}
         </div>
-
+        <OutsideClickDetector
+            callback={()=>{setShowCategories(false)}}
+            targets={[searchBarElement.current]}
+            showing={showCategories}
+        />
   </SearchBarWrapper>
   )
 }

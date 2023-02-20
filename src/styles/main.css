@@ -54,7 +54,8 @@ img{
     background-position: center;
 }
 .overlay,.full-screen-div{
-    height:100vh;
+    min-height:100vh;
+    box-sizing: border-box;
 }
 
 .overlay{
@@ -106,53 +107,7 @@ img{
 /* ************************
 Auth pages
 *********************************** */
-.auth-main-wrapper{
-    background-image:url('https://images.unsplash.com/photo-1539136788836-5699e78bfc75?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
-    background-size: cover;
-    background-position: center;
-}
-.auth-main-wrapper .overlay{
-    z-index:0;
-}
-.auth-main-header{
-    color:white;
-    margin-bottom:40px;
-}
-form{
-    z-index:1;
-    width:80%;
-    max-width:400px;
-}
-.validation-message{
-    color:rgb(255, 55, 55);
-    margin-top:8px;
-}
-.input-wrapper .form-error{
-    border : 2px solid rgb(255, 55, 55);
-    background-color:rgb(255, 189, 189) ;
-}
-.input-wrapper .form-error
-input{
-    border: none;
-}
-input[type="text"],
-input[type="password"],
-input[type="email"]{
-    margin-top:25px;
-    width:100%;
-    box-sizing: border-box;
-    padding:15px 15px;
-}
-#remember-me-label{
-    color:rgb(160, 160, 160);
-}
-.auth-submit-button{
-    margin-top:34px;
-    padding:10px 20px;
-    background-color:green;
-    color:white;
-    width:100%;
-}
+
 /* ****************
 End of Auth page
 ******************* */

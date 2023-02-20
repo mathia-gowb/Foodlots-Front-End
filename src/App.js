@@ -2,7 +2,8 @@ import './App.css';
 import './styles/auth-pages.css';
 import './styles/index.css';
 import './styles/main.css';
-import {Helmet} from 'react-helmet'
+
+import {Helmet} from 'react-helmet';
 import {
   BrowserRouter as Router,
   Routes,
@@ -13,8 +14,8 @@ import {
 import UserContext from './auth/AuthContext';
 import { useEffect, useState } from 'react';
 import Dashboard from './pages/Dashboard';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Login from './pages/Auth/Login';
+import SignUp from './pages/Auth/SignUp';
 import VerificationNotice from './pages/VerificationNotice';
 import VerifyEmail from './pages/VerifyEmail';
 import SingleRecipe from './pages/SingleRecipe';

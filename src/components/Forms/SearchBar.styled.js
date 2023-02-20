@@ -53,6 +53,7 @@ export const SearchBarWrapper = styled.div`
         position:absolute;
         padding:5px 15px;
         box-sizing: border-box;
+        display:none;
         top:100%;
         width:100%;
         z-index:5;
@@ -72,6 +73,9 @@ export const SearchBarWrapper = styled.div`
             }
             
         }
+    }
+    .dropdown-active{
+        display: block;
     }
     .search-results{
         background-color: white;

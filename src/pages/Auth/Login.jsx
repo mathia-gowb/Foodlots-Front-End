@@ -1,10 +1,11 @@
 import  { useEffect, useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
-import UserContext from '../auth/AuthContext';
-import FormInput from '../components/FormInput';
-import FormPasswordInput from '../components/FormPasswordInput';
-import { testForErrors } from '../utilities/testForErrors';
+import UserContext from '../../auth/AuthContext';
+import FormInput from '../../components/FormInput';
+import FormPasswordInput from '../../components/FormPasswordInput';
+import { testForErrors } from '../../utilities/testForErrors';
 import {Helmet} from 'react-helmet';
+import {LoginPageWrapper } from './AuthPages.styled';
 const axios = require('axios').default;
 axios.defaults.withCredentials = true
 function Login() {
@@ -93,41 +94,40 @@ function Login() {
         }
     },[formErrors])
   return (
-    <main className="full-screen-div auth-main-wrapper">
-    <Helmet>
+    <LoginPageWrapper className="full-screen-div auth-main-wrapper">
+        <Helmet>
         <title>Foodlots | Login</title>
-    </Helmet> 
-    <div className="overlay"></div>
-    <h1 className="auth-main-header">Login to your account</h1>
-    <form onSubmit={handleSubmit} onChange={handleInput} >
-        {/* each form input component has the functionality to self validate */}
-        {formErrors.verification&&<p style={{backgroundColor:'white',fontSize:'14px',padding:'5px',color:'red'}}>{formErrors.verification}</p>}
+        </Helmet>
+        <div className="form-wrapper">
+            <h1 className="auth-main-header">Login</h1>
+            <form onSubmit={handleSubmit} onChange={handleInput} >
+            {/* each form input component has the functionality to self validate */}
+            {formErrors.verification&&<p style={{backgroundColor:'white',fontSize:'14px',padding:'5px',color:'red'}}>{formErrors.verification}</p>}
 
-        <FormInput
-            type={"email"}
-            placeholder={'Enter your email'}
-            name = {'email'}
-            errorMessage ={ formErrors.email}
-        />
-     
-        <FormPasswordInput
-            placeholder={'Enter your password'}
-            name = {'password'}
-            errorMessage = { formErrors.password }//these message should be returned from backend
-            /*for signup errorMessage ={ "password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"} */
-        />
-        <br/>
-        <Link to="/reset" style={{color:'lightgreen'}}>Forgot Password ?</Link>
-        <br/>
-        <br/>
-        <input type="checkbox" name="remember" id="remember"/>{/* end of input */}
-        <label htmlFor="remember" id="remember-me-label"> Remember Me</label><br/>
-        <button className="auth-submit-button">
-            {isSubmitting?<span> Aunthenticating <i className="fa-solid  fa-circle-notch fa-spin"></i></span>:"submit"}
-           
-        </button>
-    </form>
-    </main>
+            <FormInput
+                type={"email"}
+                placeholder={'Enter your email'}
+                name = {'email'}
+                errorMessage ={ formErrors.email}
+            />
+        
+            <FormPasswordInput
+                placeholder={'Enter your password'}
+                name = {'password'}
+                errorMessage = { formErrors.password }//these message should be returned from backend
+                /*for signup errorMessage ={ "password should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"} */
+            />
+            <div className="redirect-links">
+            <Link to="/signup" className='redirect-links_signup'>Signup</Link> |
+            <Link to="/reset" className='redirect-links_forget-password'>Forgot Password ?</Link>
+            </div>
+            <button className="auth-submit-button">
+                {isSubmitting?<span> Aunthenticating <i className="fa-solid  fa-circle-notch fa-spin"></i></span>:"submit"}
+            
+            </button>
+            </form>
+        </div>
+    </LoginPageWrapper>
   )
 }
 
