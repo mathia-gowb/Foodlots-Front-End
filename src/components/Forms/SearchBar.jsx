@@ -6,12 +6,16 @@ import OutsideClickDetector from '../OutsideClickDetector';
 import { SearchBarWrapper } from './SearchBar.styled';
 
 function SearchBar() {
+    //contexts
     const {user} =useContext(UserContext);
+
+    //useStates
     const [searchArray,setSearchArray] = useState([]);
     const [searchResults,setSearchResults] = useState([]);
     const [showCategories,setShowCategories] = useState(false);
+    
+    //refs
     const searchBarElement = useRef();
-
     const {pathname} = useLocation();
 
 
@@ -47,11 +51,19 @@ function SearchBar() {
   return (
     <SearchBarWrapper className='search-bar-wrapper' ref={searchBarElement}>
         <div className='search-bar'>
-            <button className="search-categories" onClick={()=>setShowCategories((prev)=>!prev)}>
+            <button 
+                className="search-categories" 
+                onClick={()=>{
+                        setShowCategories((prev)=>!prev);
+                        //clear the results elements
+                        setSearchResults([])
+                    }
+                }
+            >
                 <span>Categories</span> 
                 <i class={`fa-solid fa-caret-${showCategories?"up":"down"} icon`}></i>
             </button>       
-            <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler}></input>
+            <input type='text' name="search" placeholder='Search Your Recipes' onInput={searchInputHandler} onClick={()=>setShowCategories(false)}/>
             <button className='search-icon'><i className="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div className={`categories-dropdown ${showCategories?'dropdown-active':''}`}>

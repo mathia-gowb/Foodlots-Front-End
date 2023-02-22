@@ -22,14 +22,12 @@ export const SolidHeaderWrapper = styled.header`
                 width:100%
             }
         }
-        .logout-button{
-            padding:5px 15px;
+        .auth-button{
+            padding:10px 20px;
             float:right;
-            border-radius: 3px;
-            -webkit-border-radius: 3px;
-            -moz-border-radius: 3px;
-            -ms-border-radius: 3px;
-            -o-border-radius: 3px;
+            border-radius: 40px;
+            font-weight: bold;
+            border:1px solid ${props=>props.theme.colors.neutralMidLight}
         }
     }
     @media (max-width:600px){

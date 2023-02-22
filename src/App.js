@@ -13,7 +13,7 @@ import {
 
 import UserContext from './auth/AuthContext';
 import { useEffect, useState } from 'react';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Auth/Login';
 import SignUp from './pages/Auth/SignUp';
 import VerificationNotice from './pages/VerificationNotice';
@@ -36,8 +36,10 @@ function App() {
   const userSchema = {
     loggedIn:false,
     isDemo:true,
+    loaded:false,
     likedRecipes:[],
-    savedRecipes:[]
+    savedRecipes:[],
+    loginError:null
   }
   const [user,setUser]=useState(userSchema);
   useEffect(()=>{
@@ -47,10 +49,21 @@ function App() {
       //if user found set the login status to true
       if(res.data.status==='SUCCESSFUL'){
         setUser((prev)=>{
-          return {...prev,loggedIn:true}
+          return {...prev,loggedIn:true,loaded:true}
         })
       } 
     }).catch((error)=>{
+        const status = error.response.status;
+        if(status===0){
+            setUser((prev)=>{
+              return {...prev,loaded:true,loginError:'Server unreachable'}
+            }
+          )
+        }else if(status===403){
+          setUser((prev)=>{
+            return {...prev,loaded:true}
+          })
+        }
     })
   },[])
   return (
@@ -67,16 +80,16 @@ function App() {
                 <Route path='' element={<Dashboard/>}></Route>
                 <Route path='recipe' element={<SingleRecipe/>}></Route>
               </Route>
+              <Route path='demo' element={<DashboardParent/>}>
+                <Route path='' element={<Dashboard/>}></Route>
+                <Route path='recipe' element={<SingleRecipe/>}></Route>
+              </Route>
               <Route path='/signup/verification-message/:email' element={<VerificationNotice/>}/>
               <Route path='/user/verify/:userId/:uniqueString' element={<VerifyEmail/>}/>
               <Route path='/user/reset-password/:userId/:uniqueString' element={<PasswordResetTokenised/>}/>
               <Route path='login' element={user.loggedIn?<Navigate to={'/'}/>:<Login/>}></Route>
               <Route path='signup' element={user.loggedIn?<Navigate to={'/'}/>:<SignUp/>}></Route>
               <Route path='reset' element={<ResetPassword/>}></Route>
-              <Route path='demo' element={<DashboardParent/>}>
-                <Route path='' element={<Dashboard/>}></Route>
-                <Route path='recipe' element={<SingleRecipe/>}></Route>
-              </Route>
               <Route path="*" element={<Page404/>}></Route>
             </Routes>
         </Router>

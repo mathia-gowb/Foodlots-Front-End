@@ -1,10 +1,12 @@
 import {useContext, useEffect, useState} from 'react';
 import {useLocation} from 'react-router-dom'
-import UserContext from '../auth/AuthContext';
-import RandomRecipes from '../components/RandomRecipes';
-import LikedRecipes from '../components/LikedRecipes';
-import SavedRecipes from '../components/SavedRecipes';
-import SolidHeader from '../components/Navigation/SolidHeader';
+import UserContext from '../../auth/AuthContext';
+import RandomRecipes from '../../components/RandomRecipes';
+import LikedRecipes from '../../components/LikedRecipes';
+import SavedRecipes from '../../components/SavedRecipes';
+import SolidHeader from '../../components/Navigation/SolidHeader';
+import { DashboardWrapper } from './Dashboard.styled';
+
 const axios = require('axios').default;
 axios.defaults.withCredentials = true;
 
@@ -21,9 +23,11 @@ function Dashboard() {
     })
   },[])
   return (
-      <div className='page-wrapper'>
+    <>
+      <SolidHeader showSearch={true} isDemo={user.loggedIn}/>
+      <DashboardWrapper className='page-wrapper'>
         <div id="recipes-content-wrapper">
-          <SolidHeader showSearch={true} isDemo={user.isDemo}/>
+          <div className='dashboar-error'>You are viewing</div>
           <nav className='nav-secondary'>
             <button className={currentTab==='Random-Recipes'&&"active-tab"} onClick={()=>setCurrentTab('Random-Recipes')}>
               <i class="fa-solid fa-shuffle"></i> Random recipes
@@ -41,7 +45,8 @@ function Dashboard() {
           {currentTab==='Liked-Recipes'&&<LikedRecipes/>}
           {currentTab==='Saved-Recipes'&&<SavedRecipes/>}
         </div>
-      </div>
+      </DashboardWrapper>
+    </>
 
   )
 }

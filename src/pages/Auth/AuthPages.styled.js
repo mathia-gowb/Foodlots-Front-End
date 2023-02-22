@@ -2,7 +2,7 @@ import styled from 'styled-components';
  
 export const AuthPagesWrapper = styled.div`
 
-    background:linear-gradient(${props=>props.theme.colors.secondary},${props=>props.theme.colors.secondaryMidLight});
+    background:linear-gradient(${props=>props.theme.colors.secondaryDark},${props=>props.theme.colors.secondary});
     background-size: cover;
     background-position: center;
     padding:10px;

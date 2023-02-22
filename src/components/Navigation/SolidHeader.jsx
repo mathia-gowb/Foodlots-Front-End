@@ -1,5 +1,5 @@
 import { useContext,useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate ,Link} from 'react-router-dom';
 import UserContext from '../../auth/AuthContext';
 import Logo from '../Logo';
 /* jsx components */
@@ -36,7 +36,8 @@ function SolidHeader(props) {
                 <div className="activate-search">
                     <button className='activate-search_button'  onClick={()=>setShowSearch(true)}><i class="fas fa-search"></i></button>
                 </div>
-                {!props.isDemo&&<button className="logout-button" onClick={clickHandler}>Logout</button>}
+                {props.loggedIn&&<button className="auth-button logout-button" onClick={clickHandler}>Logout</button>}
+                {!props.loggedIn&&<Link to="/login"><button className="auth-button login-button" >LogIn</button></Link>}
             </nav>
         </SolidHeaderWrapper>
     )
